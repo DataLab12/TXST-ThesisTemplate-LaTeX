@@ -1,0 +1,147 @@
+\documentclass[ dottedtoc,oneside,openright,titlepage,numbers=noenddot,headinclude,letterpaper
+                footinclude=true,cleardoublepage=empty,abstractoff,
+                paper=letterpaper,fontsize=12pt,
+                ngerman,american,
+                ]{scrreprt}
+
+%********************************************************************
+% Note: Make all your adjustments in here
+%*******************************************************
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+
+\usepackage{comment}
+\usepackage{adjustbox}
+\usepackage[section]{placeins}
+\usepackage{listings}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{caption}
+\usepackage{setspace}
+\include{sty/txstate_thesis_config} 
+\usepackage[letterpaper,top=2in, bottom=1in, left=1.5in, right=1in]{geometry}
+\usepackage[dvipsnames]{xcolor}
+%\usepackage{showframe}
+\usepackage{indentfirst}
+
+
+%********************************************************************
+% Hyphenation
+%*******************************************************
+
+% ********************************************************************
+% GO!GO!GO! MOVE IT!
+%*******************************************************
+\usepackage{amsmath}
+\usepackage{ragged2e}
+\newcommand\Lia[1]{{\color{blue}\em TODO: #1 -- Lia}}
+\newcommand\Jelena[1]{{\color{blue!20!black!30!green}\em TODO: #1 --Jelena}}
+\newcommand{\ignore}[1]{}
+
+\begin{document}
+\frenchspacing
+\raggedbottom
+\pagenumbering{roman}
+\pagestyle{plain}
+\setlength{\footskip}{0.5in}
+
+
+% defining style for writing code in python
+\definecolor{keywords}{RGB}{29,143,29}
+\definecolor{comments}{RGB}{64,128,128}
+\definecolor{red}{RGB}{160,0,0}
+\definecolor{gray}{RGB}{64,64,64}
+\lstset{language=Python, 
+        basicstyle=\ttfamily\scriptsize, 
+        keywordstyle=\color{keywords},
+        deletendkeywords={file},
+        commentstyle=\color{comments},
+        stringstyle=\color{red},
+        showstringspaces=false,
+        identifierstyle=\color{gray}
+        }
+        
+        
+        
+\renewcommand{\listfigurename}{\hfill\bfseries LIST OF FIGURES\hfill}
+\renewcommand{\contentsname}{\hfill\bfseries TABLE OF CONTENTS\hfill}
+\renewcommand{\listtablename}{\hfill\bfseries LIST OF TABLES\hfill}
+
+
+% \include{sty/txstate_thesis_config}
+
+%********************************************************************
+% Frontmatter
+%*******************************************************
+\include{Config/Titlepage}
+\include{Config/Copyright}
+\include{Config/FairUse}
+%left-justfiy Dedication and Acknowledgments
+\setlength{\parindent}{2em}
+\include{Config/Dedication}
+\include{Config/Acknowledgements}
+% TOC is full justified, specified internally
+\include{Config/Contents}
+\doublespacing
+
+
+
+% left-justfiy remainder of document
+\raggedright
+\setlength{\parindent}{2em}
+\include{Config/Abstract}
+%********************************************************************
+% Mainmatter
+%*******************************************************
+\pagenumbering{arabic}
+%*********************************************************************
+% Ugly hack
+%*******************************************************
+\newgeometry{letterpaper, top=1in, bottom=1in, left=1.5in, right=1in}
+
+\setlength{\footskip}{0.5in}
+\doublespacing
+\setlength{\parindent}{2em}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+
+
+\include{Chapters/Chapter1}
+\include{Chapters/Chapter2}
+
+
+\let\svaddcontentsline\addcontentsline
+\renewcommand\addcontentsline[3]{%
+  \edef\qtest{#1}%
+  \def\qmatch{lof}%
+  \ifx\qmatch\qtest\else%
+    \def\qmatch{lot}%
+    \ifx\qmatch\qtest\else%
+      \svaddcontentsline{#1}{#2}{#3}%
+  \fi\fi%
+}
+
+% Appendix - remove this if you don't have an appendix
+\include{Chapters/Appendix}
+
+
+%********************************************************************
+% Other Stuff in the Back
+%*******************************************************
+\singlespacing
+%********************************************************************
+% Bibliography
+%*******************************************************
+\phantomsection 
+\refstepcounter{dummy}
+\addcontentsline{toc}{part}{REFERENCES}
+\bibliographystyle{ieeetr}
+\bibliography{./Bib/References}
+
+
+% ********************************************************************
+% Game Over: Restore, Restart, or Quit?
+%*******************************************************
+\end{document}
+% ********************************************************************

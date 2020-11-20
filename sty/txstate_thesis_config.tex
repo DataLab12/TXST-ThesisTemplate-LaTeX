@@ -1,0 +1,264 @@
+% *****************************************************************************
+% Triggers for this config
+% *****************************************************************************
+\usepackage{ifthen}
+\newboolean{enable-backrefs} % enable backrefs in the bibliography
+\setboolean{enable-backrefs}{false} % true false
+% *****************************************************************************
+
+
+% *****************************************************************************
+% 2. Personal data and user ad-hoc commands
+% *****************************************************************************
+\newcommand{\invpyr}[1]{\vbox{\hsize=4.5in \parindent=0pt \emergencystretch=1in
+  \parshape 6
+    0.00in 4.50in
+    0.25in 4.00in
+    0.50in 3.50in
+    0.75in 3.00in
+    1.00in 2.50in
+    1.25in 2.00in
+    \leftskip=0pt plus 1fil \rightskip=0pt plus -1fil
+    \parfillskip=0pt plus 2fil
+    #1}}
+
+
+\newcommand{\myTitle}{Your Thesis title here \xspace}
+\newcommand{\myTITLE}{\expandafter\MakeUppercase\expandafter{\myTitle}}
+
+
+\newcommand{\mySubtitle}{\singlespacing A thesis submitted to the Graduate
+College of \\ 
+Texas State University in partial fulfillment \\
+of the requirements for the degree of\\}
+\newcommand{\myDegree}{Master of Science \\ with a Major in Computer Science\xspace}
+
+
+\newcommand{\myName}{Your Name Here\xspace}
+\newcommand{\myProf}{Put professor here\xspace}
+\newcommand{\myOtherProf}{Put name here\xspace}
+\newcommand{\mySupervisor}{You Advisor\xspace}
+\newcommand{\myFaculty}{Put data here\xspace}
+\newcommand{\myDepartment}{Department of Computer Science\xspace}
+\newcommand{\myUni}{Texas State University\xspace}
+\newcommand{\myLocation}{San Marcos\xspace}
+\newcommand{\myTime}{December 2020\xspace}  %\myTime Must be either May or December
+\newcommand{\myYear}{2020\xspace}
+\newcommand{\myVersion}{version 4.1\xspace}
+\newcommand{\myCommitteeOne}{Committee Member 1, Chair\xspace}
+\newcommand{\myCommitteeTwo}{Committee Member 2\xspace}
+\newcommand{\myCommitteeThree}{Committee Member 3 \xspace}
+
+
+% *****************************************************************************
+% Setup, finetuning, and useful commands
+% *****************************************************************************
+\newcounter{dummy} % necessary for correct hyperlinks (to index, bib, etc.)
+\newlength{\abcd} % for ab..z string length calculation
+\newcommand{\ie}{i.\,e.}
+\newcommand{\Ie}{I.\,e.}
+\newcommand{\eg}{e.\,g.}
+\newcommand{\Eg}{E.\,g.} 
+% *****************************************************************************
+
+
+% *****************************************************************************
+% 3. Loading some handy packages
+% *****************************************************************************
+\PassOptionsToPackage{latin9}{inputenc}
+ \usepackage{inputenc}
+\PassOptionsToPackage{square}{natbib}
+ \usepackage[numbers]{natbib}
+\PassOptionsToPackage{fleqn}{amsmath}   % math environments and more by the AMS
+ \usepackage{amsmath}
+\DeclareMathOperator*{\argmax}{argmax}
+\PassOptionsToPackage{T1}{fontenc}
+    \usepackage{fontenc}
+
+% *****************************************************************************
+% General useful packages
+% *****************************************************************************
+\usepackage{textcomp} % fix warning with missing font shapes
+\usepackage{scrhack} % fix warnings when using KOMA with listings package
+\usepackage{xspace} % to get the spacing after macros right
+\usepackage{fixltx2e} % fixes some LaTeX stuff 
+\PassOptionsToPackage{printonlyused,smaller}{acronym}
+	\usepackage{acronym} % nice macros for handling all acronyms in the thesis
+
+
+
+%\usepackage{scrpage2}
+\usepackage{tocloft}
+
+
+%******************************************************************************
+% The following are all hacks for the Table of Contents
+%******************************************************************************
+% spacing before contents heading
+\setlength{\cftbeforetoctitleskip}{-2em}
+% dotted leaders for chapters
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}}
+
+% center, regular font, bold title, for Table of Contents
+\renewcommand{\cfttoctitlefont}{}
+\renewcommand{\contentsname}{\hfill\bfseries TABLE OF CONTENTS\hfill}
+\renewcommand{\cftaftertoctitle}{\hfill\\\null\hfill\textbf{Page}}
+\cftsetindents{tab}{1in}{3in}
+
+% regular font and spacing for parts
+\renewcommand{\cftpartfont}{}
+\renewcommand{\cftpartpagefont}{}
+
+\setlength{\cftbeforepartskip}{0em}
+\setlength{\cftbeforechapskip}{0em}
+\setlength{\cftbeforesecskip}{-1em}
+
+% regular font for chapters
+\renewcommand{\cftchapfont}{}
+\renewcommand{\cftchappagefont}{}
+
+% Add period after chapter number
+\renewcommand{\cftchapaftersnum}{.}
+
+% Fixing indentation
+\cftsetindents{section}{5.5em}{1.5em}
+\cftsetindents{subsection}{6em}{1.5em}
+\cftsetindents{chapter}{2em}{2.4em}
+\cftsetindents{part}{0in}{.5in}
+
+% Roman numerals for chapters
+\renewcommand\thechapter{\Roman{chapter}}
+
+% more hacks to get chapter heading
+\newcommand{\mychapter}[2]{
+    \setcounter{chapter}{#1}
+    \setcounter{section}{0}
+    \addcontentsline{toc}{part}{#2}
+}
+
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\renewcommand{\cftfigaftersnum}{.}
+\renewcommand{\cfttabaftersnum}{.}
+
+
+%******************************************************************************
+% List of figures formatting hacks
+%******************************************************************************
+\setlength{\cftbeforeloftitleskip}{-2em}
+% center, regular font, bold title
+\renewcommand{\cftloftitlefont}{}
+\renewcommand{\listfigurename}{\hfill\bfseries LIST OF FIGURES\hfill}
+\renewcommand{\cftafterloftitle}{
+\\[1em]\mbox{}\hspace{-13pt}\textbf{Figure} \hfill{\normalfont \textbf{Page}}}
+
+\setlength{\cftaftertoctitleskip}{-1em}
+\setlength{\cftafterloftitleskip}{0em}
+\setlength{\cftafterlottitleskip}{0em}
+\cftsetindents{fig}{0in}{.3in}
+
+
+%******************************************************************************
+% List of tables formatting hacks
+%******************************************************************************
+\setlength{\cftbeforelottitleskip}{-2em}
+% center, regular font, bold title
+\renewcommand{\cftlottitlefont}{}
+\renewcommand{\cftafterlottitle}{
+\\[1em]\mbox{}\hspace{-13pt}\textbf{Table} \hfill{\normalfont \textbf{Page}}}
+\cftsetindents{tab}{0in}{.3in}
+
+
+
+%******************************************************************************
+% Bibliography hacks
+%******************************************************************************
+\newcommand\mybibname{{\bf REFERENCES}}
+\renewcommand\bibsection{%
+   \clearpage
+   \markboth{\MakeUppercase{\mybibname}}{\MakeUppercase{\mybibname}}%
+  }
+\def\bibsection{\begin{center}\mybibname\end{center}}
+  
+%******************************************************************************
+% Section and chapter font hacks
+%******************************************************************************
+\usepackage[explicit]{titlesec}
+\usepackage[normalem]{ulem}
+\titleformat{\section}{\center\normalfont}{\thesection}{1em}{\uline{#1}}
+\titleformat{\chapter}{\center\normalfont\bfseries}{\thechapter .}{1em}{#1}
+\titlespacing*{\chapter}{0pt}{-31pt}{40pt}
+\titleformat{\subsection}{\normalfont}{\thesubsection}{1em}{\uline{#1}}
+
+
+% *****************************************************************************
+% 4. Setup floats: tables, (sub)figures, and captions
+% *****************************************************************************
+\usepackage{tabularx} % better tables
+	\setlength{\extrarowheight}{3pt} % increase table row height
+\usepackage{caption}
+\captionsetup{format=hang,font=small}
+\usepackage{subfig}
+\captionsetup{aboveskip=10pt}
+\captionsetup{belowskip=10pt}
+% *****************************************************************************
+
+
+% *****************************************************************************
+% 5. Setup code listings
+% *****************************************************************************
+\usepackage{listings} 
+\lstset{language=[LaTeX]Tex,
+    keywordstyle=\color{RoyalBlue},
+    basicstyle=\small\ttfamily,
+    commentstyle=\color{Green}\ttfamily,
+    stringstyle=\rmfamily,
+    numbers=none,
+    numberstyle=\scriptsize,
+    stepnumber=5,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frameround=ftff,
+    frame=single,
+    belowcaptionskip=.75\baselineskip
+}
+
+
+% *****************************************************************************
+% Using PDFLaTeX
+% *****************************************************************************
+\PassOptionsToPackage{pdftex,hyperfootnotes=false,pdfpagelabels}{hyperref}
+	\usepackage{hyperref}  % backref linktocpage pagebackref
+\pdfcompresslevel=9
+\pdfadjustspacing=1 
+\PassOptionsToPackage{pdftex}{graphicx}
+	\usepackage{graphicx} 
+
+
+% ********************************************************************
+% Hyperreferences
+% ********************************************************************
+\hypersetup{
+    draft,	% = no hyperlinking at all (useful in b/w printouts)
+    colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
+    % uncomment the following line if you want to have black links (e.g., for printing)
+    %colorlinks=false, linktocpage=false, pdfborder={0 0 0}, pdfstartpage=3, pdfstartview=FitV,% 
+    breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
+    plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
+    hypertexnames=true, pdfhighlight=/O,%nesting=true,%frenchlinks,%
+    urlcolor=webbrown, linkcolor=RoyalBlue, citecolor=webgreen, %pagecolor=RoyalBlue,%
+    %urlcolor=Black, linkcolor=Black, citecolor=Black, %pagecolor=Black,%
+    pdftitle={\myTitle},%
+    pdfauthor={\textcopyright\ \myName, \myUni, \myFaculty},%
+    pdfsubject={},%
+    pdfkeywords={},%
+    pdfcreator={pdfLaTeX},%
+    pdfproducer={LaTeX with hyperref and classicthesis}%
+}
+% *****************************************************************************
+% 7. Last calls before the bar closes
+% *****************************************************************************
+\listfiles

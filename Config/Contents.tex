@@ -1,0 +1,50 @@
+%*******************************************************
+% Table of Contents
+%*******************************************************
+\phantomsection
+\refstepcounter{dummy}
+\setcounter{tocdepth}{2} % <-- 2 includes up to subsections in the ToC
+\setcounter{secnumdepth}{3} % <-- 3 numbers up to subsubsections
+\justify
+\tableofcontents
+
+
+%*******************************************************
+% List of Figures and of the Tables
+%*******************************************************
+\clearpage
+
+% to indent titles going to the second line
+\hangindent=\parindent
+\hangafter=1
+\noindent
+
+% to remove the extra space between chapter in the list of figures and tables
+\let\origaddvspace\addvspace
+\renewcommand{\addvspace}[1]{}
+
+
+    %*******************************************************
+    % List of Tables/Figures
+    %*******************************************************    
+    \phantomsection 
+    \refstepcounter{dummy}
+    \mychapter{0}{LIST OF TABLES}
+    \singlespacing
+    \setlength{\cftparskip}{1em}
+    \listoftables
+    
+    \newpage
+    \phantomsection 
+    \refstepcounter{dummy}
+    \mychapter{0}{LIST OF FIGURES}
+    \listoffigures
+    \doublespacing
+    
+\renewcommand{\addvspace}[1]{\origaddvspace{#1}}
+\hangindent=0pt
+
+
+
+
+
