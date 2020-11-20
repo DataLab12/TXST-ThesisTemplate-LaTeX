@@ -1,4 +1,4 @@
-# LaTeX Master Thesis Template
+# LaTeX Master Thesis Template, Texas State University
 
 * Follows Graduate College [Guidelines](https://www.gradcollege.txstate.edu/students/thesis-dissertation/resources.html)
 
