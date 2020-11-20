@@ -5,4 +5,4 @@
 * Based on the [lianogueira](https://github.com/lianogueira) succesfull thesis submission in Dec 2020. 
   * Advisor: [jtesic](jtesic.github.io)
 
-* Updated version of original 2016 [template](https://github.com/odasor/TxState-grad-college-latex-thesis)
+* 2020 updates of 2016 [template](https://github.com/odasor/TxState-grad-college-latex-thesis)
